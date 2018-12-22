@@ -1,6 +1,8 @@
 """
 Bytepack format used by Dave Smith Intruments and Korg.
 
+Tested with:
+
 * Korg Minilogue
 * Korg Triton LE
 * DSI OB6
@@ -75,6 +77,11 @@ def print_data(data, heading):
         print_byte(byte)
     print()
 
+
+def test_pack_unpack():
+    data = list(range(256))
+
+    assert unpack_data(pack_data(data)) == data
 
 if __name__ == '__main__':
     data = [0xff, 0x01, 0xff, 0x03]
