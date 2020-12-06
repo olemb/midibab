@@ -35,7 +35,7 @@ From Korg Triton LE MIDI implementation manual (TRITON_Le_MIDIimp.txt):
 def pack_data(data):
     data = list(data)
     packed_data = []
- 
+
     while data:
         msbits = 0
         chunk, data = data[:7], data[7:]
@@ -58,7 +58,7 @@ def unpack_data(data):
 
     while data:
         msbits, chunk, data = data[0], data[1:8], data[8:]
-        
+
         for i, byte in enumerate(chunk):
             if msbits & (1 << i):
                 byte |= 0x80
@@ -86,9 +86,9 @@ def test_pack_unpack():
 if __name__ == '__main__':
     data = [0xff, 0x01, 0xff, 0x03]
     print_data(data, 'Input')
-    
+
     packed = pack_data(data)
     print_data(packed, 'Packed')
-    
+
     unpacked = unpack_data(packed)
     print_data(unpacked, 'Unpacked')
